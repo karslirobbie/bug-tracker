@@ -13,7 +13,7 @@ export default class SignIn extends Form {
   render () {
     return (
       <div className="h-full bg-gray-900 overflow-hidden">
-        <img src={waveTop} className="fixed -top-20" />
+        <img src={waveTop} className="fixed -top-10" />
         <div className="flex h-full">
           <div className="left flex w-1/2 place-items-center place-content-center text-center">
             <form>
