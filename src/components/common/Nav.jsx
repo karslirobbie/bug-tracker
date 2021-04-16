@@ -38,7 +38,7 @@ export default function Nav () {
 
 
   return (
-    <div className="navi flex flex-col w-28 h-full bg-gray-900 rounded-full text-gray-2000 ">
+    <nav className="flex flex-col w-28 h-full bg-gray-900 rounded-lg text-gray-2000 ">
       <div className="flex flex-col justify-center gap-12 place-items-center h-3/4 w-full">
         {links.map(({ title, content, path }) =>
           <Link key={title} to={path}>
@@ -62,6 +62,6 @@ export default function Nav () {
           <p>Logout</p>
         </div>
       </div>
-    </div>
+    </nav>
   )
 }

@@ -10,8 +10,9 @@ export default function Ticket () {
       <Nav />
 
       <div className="flex flex-col xl:w-1/2 w-full h-full">
-        <Header />
+        <Header title="Tickets" />
         <Main />
+
       </div>
 
       <div className="ticket-description">
