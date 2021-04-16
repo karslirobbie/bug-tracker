@@ -10,9 +10,9 @@ function Table ({ header, row }) {
   return (
     <Fragment>
       <div className="py-2 w-full sm:px-6 mb-6 mr-10 lg:pr-8 h-3/4 overflow-y-auto">
-        <div className="shadow border-b border-l border-r border-gray-900 sm:rounded-lg">
+        <div className="shadow border-b border-t bg-gray-900 border-l border-r border-gray-900 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-800">
-            <thead className="bg-gray-900 rounded-lg">
+            <thead>
               <tr>
                 {header.map(th =>
                   <th key={th}

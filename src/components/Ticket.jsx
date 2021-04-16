@@ -1,7 +1,7 @@
 import React from 'react'
 import Nav from './common/Nav'
-import Main from './common/Main'
 import Header from './common/Header'
+import Table from './common/Table'
 
 
 export default function Ticket () {
@@ -11,8 +11,9 @@ export default function Ticket () {
 
       <div className="flex flex-col xl:w-1/2 w-full h-full">
         <Header title="Tickets" />
-        <Main />
-
+        <main className="h-3/4 mt-16 mx-10 ">
+          <Table />
+        </main>
       </div>
 
       <div className="ticket-description">
