@@ -13,7 +13,7 @@ export default class SignIn extends Form {
   render () {
     return (
       <div className="h-full bg-gray-900 overflow-hidden">
-        <img src={waveTop} className="fixed top-0" />
+        <img src={waveTop} className="fixed -top-20" />
         <div className="flex h-full">
           <div className="left flex w-1/2 place-items-center place-content-center text-center">
             <form>
@@ -32,7 +32,7 @@ export default class SignIn extends Form {
           <img src={login} className="right flex place-items-center w-1/2 xl:w-1/4" />
 
         </div>
-        <img src={waveBottom} className="fixed bottom-0" />
+        <img src={waveBottom} className="fixed -bottom-10" />
       </div>
     )
   }

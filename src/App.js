@@ -6,13 +6,13 @@ function App () {
   return (
     <div className="App w-screen h-screen bg-gray-800  font-poppins">
       <Router>
-        <Switch>
-          <Suspense fallback={<div className="flex h-full justify-center place-items-center"><Loading /></div>}>
+        <Suspense fallback={<div className="flex h-full justify-center place-items-center"><Loading /></div>}>
+          <Switch>
             {routes.map(({ path, component }) =>
               <Route key={path} exact path={path} component={component} />
             )}
-          </Suspense>
-        </Switch>
+          </Switch>
+        </Suspense>
       </Router>
 
     </div>
