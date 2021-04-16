@@ -29,7 +29,7 @@ export default class SignIn extends Form {
               </div>
             </form>
           </div>
-          <img src={login} className="right flex place-items-center w-1/2 xl:w-1/4" />
+          <img src={login} className="right flex place-items-center w-1/2 2xl:w-1/3 " />
 
         </div>
         <img src={waveBottom} className="fixed -bottom-10" />
