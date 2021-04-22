@@ -13,7 +13,7 @@ export default function Ticket () {
         <Header title="Projects" />
 
         <main className="h-3/4 mt-10 md:mt-16 mx-5 xl:mx-10 ">
-          <Table />
+          <Table type="projects" />
         </main>
       </div>
 

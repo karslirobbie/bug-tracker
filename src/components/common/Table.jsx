@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
 import { ReactComponent as ID } from '../../images/id.svg'
 import Pagination from './Pagination'
-function Table ({ header, row }) {
+import { useHistory } from 'react-router-dom'
+function Table ({ header, row, type }) {
+  let history = useHistory();
 
   row = [{ id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Med" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "High" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }]
 
@@ -25,7 +27,7 @@ function Table ({ header, row }) {
             </thead>
             <tbody className="bg-gray-800 divide-y divide-gray-900">
               {row.map(data =>
-                <tr key={data.id} className="cursor-pointer transition-all transform hover:scale-105 hover:bg-gray-900">
+                <tr onClick={() => history.push(`/${type}/${data.id}`)} key={data.id} className="cursor-pointer transition-all transform hover:scale-105 hover:bg-gray-900">
                   <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="xl:ml-2">
@@ -35,8 +37,11 @@ function Table ({ header, row }) {
                       </div>
                     </div>
                   </td>
+
                   <td className="px-3 md:px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap">
-                    <div className="md:text-sm text-gray-400">{data.title}</div>
+                    <div className="md:text-sm text-gray-400">
+                      {data.title}
+                    </div>
                   </td>
                   <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-nowrap text-gray-400">
                     {data.status}
@@ -62,7 +67,8 @@ function Table ({ header, row }) {
 }
 
 Table.defaultProps = {
-  header: [<ID />, 'Title', 'Status', 'Urgency']
+  header: [<ID />, 'Title', 'Status', 'Urgency'],
+  type: "tickets"
 }
 
 export default Table
