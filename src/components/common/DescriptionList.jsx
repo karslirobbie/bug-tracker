@@ -2,54 +2,54 @@ import React from 'react'
 
 export default function DescriptionList () {
   return (
-    <div className="bg-gray-900 shadow overflow-hidden sm:rounded-lg mr-5 xl:mr-10">
+    <div className="bg-gray-900 shadow w-full h-full overflow-hidden mr-5 xl:mr-10 rounded-lg">
       <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-400">
+        <h3 className="md:text-lg leading-6 font-medium text-gray-400">
           Ticket Information
         </h3>
-        <p className="mt-1 max-w-2xl text-sm text-gray-500">
+        <p className="mt-1 max-w-2xl text-xs md:text-sm text-gray-500">
           Ticket details and description.
         </p>
       </div>
       <div className="border-t border-gray-500">
         <dl>
           <div className="bg-gray-900 px-4 py-8 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-xs md:text-sm font-medium text-gray-500">
               Ticket #
             </dt>
-            <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
               TICKET-100
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-xs md:text-sm font-medium text-gray-500">
               Status
             </dt>
-            <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
               Open
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-xs md:text-sm font-medium text-gray-500">
               Urgency
             </dt>
-            <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
               High
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-xs md:text-sm font-medium text-gray-500">
               Assignee
             </dt>
-            <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
               Robbie Ann Clemente
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-xs md:text-sm font-medium text-gray-500">
               Assigned To
             </dt>
-            <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
               Robbie Ann Clemente
             </dd>
           </div>
@@ -63,12 +63,12 @@ export default function DescriptionList () {
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
+            <dt className="text-xs md:text-sm font-medium text-gray-500">
               Attachments
             </dt>
-            <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
               <ul className="border border-gray-200 rounded-md divide-y divide-gray-200">
-                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-xs md:text-sm">
                   <div className="w-0 flex-1 flex items-center">
 
                     <svg className="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -84,7 +84,7 @@ export default function DescriptionList () {
                     </a>
                   </div>
                 </li>
-                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                <li className="pl-3 pr-4 py-3 flex items-center justify-between text-xs md:text-sm">
                   <div className="w-0 flex-1 flex items-center">
 
                     <svg className="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

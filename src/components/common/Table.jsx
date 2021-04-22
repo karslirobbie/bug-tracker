@@ -9,15 +9,15 @@ function Table ({ header, row }) {
 
   return (
     <Fragment>
-      <div className="py-2 w-full sm:px-6 mb-6 mr-10 lg:pr-8 h-3/4 overflow-y-auto">
-        <div className="shadow border-b border-t bg-gray-900 border-l border-r border-gray-900 sm:rounded-lg">
+      <div className="py-2 w-full md:px-6 mb-6 mr-10 lg:pr-8 h-3/4 overflow-y-auto">
+        <div className="overflow-x-scroll border-b border-t bg-gray-900 border-l border-r border-gray-900 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-800">
             <thead>
               <tr>
                 {header.map(th =>
                   <th key={th}
                     scope="col"
-                    className="px-6 lg:px-2 xl:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    className="px-3 md:px-6 lg:px-2 xl:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     {th}
                   </th>
                 )}
@@ -26,22 +26,22 @@ function Table ({ header, row }) {
             <tbody className="bg-gray-800 divide-y divide-gray-900">
               {row.map(data =>
                 <tr key={data.id} className="cursor-pointer transition-all transform hover:scale-105 hover:bg-gray-900">
-                  <td className="px-6 xl:px-2 py-4 whitespace-nowrap">
+                  <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="xl:ml-2">
-                        <div className="text-sm font-medium text-gray-400">
+                        <div className="md:text-sm font-medium text-gray-400">
                           {data.id}
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap">
-                    <div className="text-sm text-gray-400">{data.title}</div>
+                  <td className="px-3 md:px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap">
+                    <div className="md:text-sm text-gray-400">{data.title}</div>
                   </td>
-                  <td className="px-6 xl:px-2 py-4 whitespace-nowrap text-gray-400">
+                  <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-nowrap text-gray-400">
                     {data.status}
                   </td>
-                  <td className="px-6 xl:px-2 py-4 whitespace-wrap text-sm">
+                  <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-wrap md:text-sm">
                     <span className={data.urgency == 'High' ? `${classes} bg-red-300 text-red-800`
                       : data.urgency == 'Med' ? `${classes} bg-yellow-300 text-yellow-800`
                         : `${classes} bg-green-300 text-green-800`}>

@@ -11,27 +11,27 @@ export default class SignIn extends Form {
   render () {
     return (
       <div className="h-full bg-gray-900 overflow-hidden">
-        <img src={bounce} className="fixed left-0 transform rotate-180 z-0" />
+        <img src={bounce} className="hidden lg:inline-flex fixed left-0 transform rotate-180 lg:z-0" />
 
-        <div className="grid grid-cols-2 auto-cols-fr w-full h-full bg-gray-900">
-          <div className="flex flex-col justify-center place-items-center z-10">
-            <form>
-              <h1 className="font-semibold text-xl mb-5 text-gray-400 text-center">Welcome back!</h1>
-              <div className="flex flex-col">
+        <div className="flex flex-col lg:grid grid-cols-2 auto-cols-fr w-full h-full bg-gray-900">
+          <div className="flex w-full flex-col h-3/4 justify-center lg:h-full place-items-center z-10">
+            <form className="w-3/4">
+              <h1 className="text-md font-semibold lg:text-xl mb-5 text-gray-400 text-center">Welcome back!</h1>
+              <div className="flex flex-col w-full place-items-center">
                 {this.renderInput({ name: "email", placeholder: "Email" })}
                 {this.renderInput({ name: "password", placeholder: "Password", type: "password" })}
               </div>
-              <div className="mt-10 flex flex-col items-center">
+              <div className="mt-2 md:mt-10 flex flex-col items-center">
                 <Button label="Sign in" />
-                <p className="text-xs mt-3 text-gray-400">or</p>
+                <p className="text-xs mt-1 md:mt-3 text-gray-400">or</p>
                 <p className="text-xs mt-1 underline cursor-pointer text-lime-400 "><Link to="/signup">Sign Up</Link></p>
               </div>
             </form>
           </div>
-          <div className="flex flex-col place-items-center justify-center left-panel text-gray-400 text-sm tracking-wide">
-            <img src={login} className="right flex place-items-center w-72 mb-12" />
-            <p className="text-base font-medium pb-2 tracking-wide">We are delighted to have you back. </p>
-            <p>Stay in progress</p>
+          <div className="flex flex-col h-1/4 mb-7 lg:h-full place-items-center justify-center text-gray-400 text-sm tracking-wide">
+            <img src={login} className="flex place-items-center w-60 md:w-72 lg:w-96 lg:mb-12" />
+            <p className="hidden lg:inline-flex text-base font-medium pb-2 tracking-wide">We are delighted to have you back. </p>
+            <p className="hidden lg:inline-flex">Stay in progress</p>
           </div>
         </div>
       </div>

@@ -2,6 +2,8 @@ import React from 'react'
 
 const SignUp = React.lazy(() => import('./components/SignUp'));
 const Ticket = React.lazy(() => import('./components/Ticket'))
+const TicketDescription = React.lazy(() => import('./components/TicketDescription'))
+
 const Project = React.lazy(() => import('./components/Project'))
 const ProjectStatus = React.lazy(() => import('./components/ProjectStatus'))
 
@@ -21,6 +23,10 @@ const routes = [
   {
     path: "/tickets",
     component: Ticket
+  },
+  {
+    path: "/tickets/:id",
+    component: TicketDescription
   },
   {
     path: "/projects",

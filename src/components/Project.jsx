@@ -11,7 +11,8 @@ export default function Ticket () {
 
       <div className="flex flex-col xl:w-1/2 w-full h-full">
         <Header title="Projects" />
-        <main className="h-3/4 mt-16 mx-10 ">
+
+        <main className="h-3/4 mt-10 md:mt-16 mx-5 xl:mx-10 ">
           <Table />
         </main>
       </div>
