@@ -17,7 +17,7 @@ function Table ({ header, row }) {
                 {header.map(th =>
                   <th key={th}
                     scope="col"
-                    className="px-6 xl:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    className="px-6 lg:px-2 xl:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     {th}
                   </th>
                 )}
@@ -35,7 +35,7 @@ function Table ({ header, row }) {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 xl:px-2 py-4 whitespace-wrap">
+                  <td className="px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap">
                     <div className="text-sm text-gray-400">{data.title}</div>
                   </td>
                   <td className="px-6 xl:px-2 py-4 whitespace-nowrap text-gray-400">

@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import Form from './common/Form'
 import Button from './common/Button'
 import login from '../images/login.svg'
-import waveTop from '../images/wave-top.svg'
-import waveBottom from '../images/wave-bottom.svg'
-
+import bounce from '../images/bounce.svg'
 export default class SignIn extends Form {
   state = {
     data: {}
@@ -13,11 +11,12 @@ export default class SignIn extends Form {
   render () {
     return (
       <div className="h-full bg-gray-900 overflow-hidden">
-        <img src={waveTop} className="fixed -top-10" />
-        <div className="flex h-full">
-          <div className="left flex w-1/2 place-items-center place-content-center text-center">
+        <img src={bounce} className="fixed left-0 transform rotate-180 z-0" />
+
+        <div className="grid grid-cols-2 auto-cols-fr w-full h-full bg-gray-900">
+          <div className="flex flex-col justify-center place-items-center z-10">
             <form>
-              <h1 className="font-semibold text-xl mb-5 text-gray-400">Welcome back!</h1>
+              <h1 className="font-semibold text-xl mb-5 text-gray-400 text-center">Welcome back!</h1>
               <div className="flex flex-col">
                 {this.renderInput({ name: "email", placeholder: "Email" })}
                 {this.renderInput({ name: "password", placeholder: "Password", type: "password" })}
@@ -29,10 +28,12 @@ export default class SignIn extends Form {
               </div>
             </form>
           </div>
-          <img src={login} className="right flex place-items-center w-1/2 2xl:w-1/3 " />
-
+          <div className="flex flex-col place-items-center justify-center left-panel text-gray-400 text-sm tracking-wide">
+            <img src={login} className="right flex place-items-center w-72 mb-12" />
+            <p className="text-base font-medium pb-2 tracking-wide">We are delighted to have you back. </p>
+            <p>Stay in progress</p>
+          </div>
         </div>
-        <img src={waveBottom} className="fixed -bottom-10" />
       </div>
     )
   }
