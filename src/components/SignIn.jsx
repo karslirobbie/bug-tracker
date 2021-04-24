@@ -8,6 +8,7 @@ export default class SignIn extends Form {
   state = {
     data: {}
   }
+
   render () {
     return (
       <div className="h-full bg-gray-900 overflow-hidden">

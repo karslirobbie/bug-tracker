@@ -7,7 +7,6 @@ import { PageTransition } from '@steveeeie/react-page-transition'
 function App () {
   return (
     <div className="App w-screen h-screen bg-gray-800  font-poppins">
-
       <Router>
         <Suspense fallback={<div className="flex h-full justify-center place-items-center"><Loading /></div>}>
 

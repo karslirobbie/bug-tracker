@@ -31,7 +31,7 @@ function Table ({ header, row, type }) {
                   <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="xl:ml-2">
-                        <div className="md:text-sm font-medium text-gray-400">
+                        <div className="lg:text-sm font-medium text-gray-400">
                           {data.id}
                         </div>
                       </div>
@@ -39,7 +39,7 @@ function Table ({ header, row, type }) {
                   </td>
 
                   <td className="px-3 md:px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap">
-                    <div className="md:text-sm text-gray-400">
+                    <div className="lg:text-sm text-gray-400">
                       {data.title}
                     </div>
                   </td>

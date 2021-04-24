@@ -8,7 +8,7 @@ export default function Input ({ name, ...rest }) {
         name={name}
         id={name}
         {...rest}
-        className="text-xs md:text-sm focus:outline-none focus:ring-0 focus:ring-black w-full md:w-full focus:ring-opacity-0 placeholder-gray-500 border border-gray-200 h-11 rounded-full py-2 pl-10" />
+        className="text-xs md:text-sm focus:border-lime-400 focus:border-opacity-0 focus:outline-none focus:ring-0 focus:ring-offset-gray-600 w-full md:w-full  placeholder-gray-500 border h-11 rounded-full py-2 pl-10" />
     </div>
   )
 }
