@@ -1,4 +1,4 @@
-##This is a Bug/Ticket tracker made with React and tailwindcss. 
+## Bug/Ticket Tracker made with React and tailwindcss. 
 
 ## Purpose
 This is a personal project for the sole purpose of deeper learning and skills in React ecosystem.
