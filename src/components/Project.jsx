@@ -6,10 +6,16 @@ import PageTemplate from './common/PageTemplate'
 import { ReactComponent as ID } from '../images/id.svg'
 
 export default function Ticket () {
+  const header = [<ID />, "title", "status", "created"];
+
   return (
     <PageTemplate
       header={<Header title="Projects" />}
-      main={<Table type="project-status" header={[<ID />, "title", "status", "created"]} />}
+      main={
+        <Table
+          type="project-status"
+          header={header}
+        />}
       other={<DescriptionList />}
     />
   )

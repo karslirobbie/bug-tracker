@@ -2,11 +2,9 @@ import React from 'react'
 import DescriptionList from './common/DescriptionList'
 import MobileNav from './common/MobileNav'
 import Nav from './common/Nav'
-import { useHistory } from 'react-router-dom'
+
+
 export default function TicketDescription () {
-
-  let history = useHistory()
-
   return (
     <div className="flex w-full h-full">
       <Nav />
