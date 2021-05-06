@@ -14,7 +14,7 @@ export default function PageTemplate ({ header, main, other = null }) {
         <div className="flex flex-col lg:w-1/2 w-full h-full">
           {header}
 
-          <main className="h-3/4 mt-10 md:mt-16 mx-5 xl:mx-10">
+          <main className="h-3/4 mt-10 md:mt-16 xl:mx-10">
             {main}
           </main>
 
@@ -28,7 +28,7 @@ export default function PageTemplate ({ header, main, other = null }) {
       }
 
       {other &&
-        <div className="hidden lg:flex lg:w-1/2 h-full py-10  mr-5 xl:mr-10">
+        <div className="hidden lg:flex lg:w-2/5 h-full py-10  xl:mr-10">
           {other}
         </div>
       }

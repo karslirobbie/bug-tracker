@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
+import { useParams } from 'react-router-dom'
+import TicketContext from '../../contexts/ticketContext'
 
 export default function DescriptionList () {
+
+  const ticketContext = useContext(TicketContext);
+  const { id = ticketContext[0] } = useParams()
+
+  const current = ticketContext.find(({ tag }) => tag == id)
+  console.log(current)
   return (
     <div className="bg-gray-900 shadow w-full h-full overflow-hidden mr-5 xl:mr-10 rounded-lg">
       <div className="px-4 py-5 sm:px-6">
@@ -18,7 +26,7 @@ export default function DescriptionList () {
               Ticket #
             </dt>
             <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
-              TICKET-100
+              {current?.tag ?? ""}
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -26,7 +34,7 @@ export default function DescriptionList () {
               Status
             </dt>
             <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
-              Open
+              {current?.status ?? ""}
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -34,7 +42,7 @@ export default function DescriptionList () {
               Urgency
             </dt>
             <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
-              High
+              {current?.urgency ?? ""}
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -42,7 +50,7 @@ export default function DescriptionList () {
               Assignee
             </dt>
             <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
-              Robbie Ann Clemente
+              {current?.assignee.name ?? ""}
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -50,7 +58,7 @@ export default function DescriptionList () {
               Assigned To
             </dt>
             <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
-              Robbie Ann Clemente
+              {current?.assignedTo.name ?? ""}
             </dd>
           </div>
 
@@ -59,7 +67,7 @@ export default function DescriptionList () {
               Desciption
             </dt>
             <dd className="mt-1 text-sm text-gray-400 sm:mt-0 sm:col-span-2">
-              Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+              {current?.description ?? ""}
             </dd>
           </div>
           <div className="bg-gray-900 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

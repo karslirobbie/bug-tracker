@@ -1,17 +1,22 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { ReactComponent as ID } from '../../images/id.svg'
 import Pagination from './Pagination'
 import { useHistory } from 'react-router-dom'
-function Table ({ header, row, type }) {
+import TicketContext from '../../contexts/ticketContext';
+import ProjectContext from '../../contexts/projectContext'
+
+function Table ({ header, type }) {
   let history = useHistory();
-
-  row = [{ id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Med" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "High" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }, { id: "CAST-100", title: "Sample Ticket for the economy", status: "Open", urgency: "Low" }]
-
   const classes = "px-2 inline-flex text-xs leading-5 font-semibold rounded-full";
+
+  const ticketContext = useContext(TicketContext);
+  const projectContext = useContext(ProjectContext)
+  const data = type == "tickets" ? ticketContext : projectContext;
+
 
   return (
     <Fragment>
-      <div className="py-2 w-full md:px-6 mb-6 mr-10 lg:pr-8 h-3/4 overflow-y-auto">
+      <div className="py-2 w-full md:px-4 mb-6 mx-3 lg:pr-8 h-3/4 overflow-y-auto">
         <div className="overflow-x-scroll border-b border-t bg-gray-900 border-l border-r border-gray-900 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-800">
             <thead>
@@ -26,33 +31,39 @@ function Table ({ header, row, type }) {
               </tr>
             </thead>
             <tbody className="bg-gray-800 divide-y divide-gray-900">
-              {row.map(data =>
-                <tr onClick={() => history.push(`/${type}/${data.id}`)} key={data.id} className="cursor-pointer transition-all transform hover:scale-105 hover:bg-gray-900">
-                  <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-nowrap">
+              {data.map(row =>
+                <tr key={row._id}
+                  onClick={() => history.push({ pathname: `/${type}/${row.tag}` })}
+                  className="cursor-pointer transition-all transform hover:scale-105 hover:bg-gray-900">
+                  <td className="px-3 md:px-4 xl:px-2 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="xl:ml-2">
                         <div className="lg:text-sm font-medium text-gray-400">
-                          {data.id}
+                          {row.tag}
                         </div>
                       </div>
                     </div>
                   </td>
 
-                  <td className="px-3 md:px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap">
-                    <div className="lg:text-sm text-gray-400">
-                      {data.title}
+                  <td className="flex px-3 md:px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap truncate">
+                    <div className="flex-none w-24 lg:w-32 xl:w-52 2xl:w-auto lg:text-sm text-gray-400">
+                      <p className="truncate">{row.title} </p>
                     </div>
                   </td>
-                  <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-nowrap text-gray-400">
-                    {data.status}
+                  <td className="px-3 md:px-5 xl:px-2 py-4 whitespace-nowrap text-gray-400">
+                    {row.status}
                   </td>
-                  <td className="px-3 md:px-6 xl:px-2 py-4 whitespace-wrap md:text-sm">
-                    <span className={data.urgency == 'High' ? `${classes} bg-red-300 text-red-800`
-                      : data.urgency == 'Med' ? `${classes} bg-yellow-300 text-yellow-800`
-                        : `${classes} bg-green-300 text-green-800`}>
+                  <td className="px-3 md:px-5 xl:px-2 py-4 whitespace-wrap text-gray-400">
+                    {
+                      type == "tickets" &&
+                      <span className={row.urgency == 'High' ? `${classes}  bg-red-300 text-red-800`
+                        : row.urgency == 'Med' ? `${classes} bg-yellow-300 text-yellow-800`
+                          : `${classes} bg-green-300 text-green-800`}>
 
-                      {data.urgency}
-                    </span>
+                        {row.urgency}
+                      </span>
+                    }
+                    {type != "tickets" && row.dateCreated}
                   </td>
                 </tr>
               )
