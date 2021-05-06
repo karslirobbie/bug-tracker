@@ -5,8 +5,8 @@ import TicketContext from '../../contexts/ticketContext'
 export default function DescriptionList () {
 
   const ticketContext = useContext(TicketContext);
-  const { id = ticketContext[0].tag } = useParams()
-
+  let { id } = useParams();
+  id = id ?? ticketContext[0].tag
   const current = ticketContext.find(({ tag }) => tag == id)
 
   const rows = [
@@ -32,7 +32,8 @@ export default function DescriptionList () {
 
       <div className="border-t border-gray-500">
         <dl>
-          {rows.map(({ title, name, prop }) => (<div className="bg-gray-900 px-4 py-8 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          {rows.map(({ title, name, prop }) =>
+          (<div key={name} className="bg-gray-900 px-4 py-8 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt className="text-xs md:text-sm font-medium text-gray-500">
               {title}
             </dt>

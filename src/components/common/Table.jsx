@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { ReactComponent as ID } from '../../images/id.svg'
 import Pagination from './Pagination'
 import { useHistory } from 'react-router-dom'
@@ -13,7 +13,11 @@ function Table ({ header, type }) {
   const projectContext = useContext(ProjectContext)
   const data = type == "tickets" ? ticketContext : projectContext;
 
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const handleNextPage = (page) => console.log(page)
+
+  console.log('Current', currentPage)
   return (
     <Fragment>
       <div className="py-2 w-full md:px-4 mb-6  lg:pr-8 h-3/4 overflow-y-auto">
@@ -72,7 +76,11 @@ function Table ({ header, type }) {
           </table>
         </div>
       </div>
-      <Pagination />
+      <Pagination
+        type={type}
+        currentPage={currentPage}
+        onPageChange={handleNextPage}
+      />
     </Fragment>
   )
 }
