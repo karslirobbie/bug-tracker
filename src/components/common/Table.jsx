@@ -17,7 +17,6 @@ function Table ({ header, type }) {
 
   const handleNextPage = (page) => console.log(page)
 
-  console.log('Current', currentPage)
   return (
     <Fragment>
       <div className="py-2 w-full md:px-4 mb-6  lg:pr-8 h-3/4 overflow-y-auto">

@@ -1,16 +1,15 @@
+import React from 'react'
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import ModalContent from './ModalContent'
 
+export default function ModalTemplate ({ content, onSubmit, show, onHide }) {
 
-export default function Modal ({ show, onHide, title }) {
   const [open, setOpen] = useState(false)
+  const cancelButtonRef = useRef()
 
   useEffect(() => {
     setOpen(show)
   })
-
-  const cancelButtonRef = useRef()
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -46,7 +45,7 @@ export default function Modal ({ show, onHide, title }) {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-gray-900 rounded-2xl text-left overflow-hidden shadow-xl transform transition-all my-8 sm:align-middle h-full sm:h-5/6 w-full sm:w-3/4 sm:max-w-2xl">
+            <div className="inline-block align-bottom bg-gray-900 rounded-2xl text-left overflow-y-scroll shadow-xl transform my-3 transition-all sm:align-middle h-full sm:h-full w-full sm:max-w-2xl">
               <div className="flex flex-col h-full">
                 <div className="h-1/6 sm:h-1/6 bg-gray-900 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
@@ -57,7 +56,7 @@ export default function Modal ({ show, onHide, title }) {
                     </div>
                     <div className="my-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title as="h3" className="text-sm sm:text-lg leading-6 sm:font-medium text-gray-400">
-                        Create New {title}
+                        Create New
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
@@ -67,14 +66,14 @@ export default function Modal ({ show, onHide, title }) {
                     </div>
                   </div>
                 </div>
-                <div className="h-4/6 sm:h-5/6 text-gray-500 bg-gray-900">
-                  <ModalContent />
+                <div className="h-3/4 text-gray-500 bg-gray-900">
+                  {content}
                 </div>
-                <div className="h-full bg-gray-900 px-4 place-items-center sm:px-6 flex flex-row-reverse gap-3 sm:gap-1">
+                <div className="h-full  px-4 place-items-center sm:px-6 flex flex-row-reverse gap-3 sm:gap-1">
                   <button
                     type="button"
                     className="w-auto sm:h-10 inline-flex justify-center rounded-md border shadow-sm px-5 py-2  border-gray-400 font-medium text-gray-400  focus:outline-none focus:text-lime-400 hover:border-lime-400 hover:text-lime-400 focus:ring-offset-lime-400 focus:ring-1 focus:border-opacity-0 focus:ring-lime-400 sm:ml-3 text-xs sm:text-sm"
-                    onClick={onHide}
+                    onClick={onSubmit}
                   >
                     Done
                   </button>

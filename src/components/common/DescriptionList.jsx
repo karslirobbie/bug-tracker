@@ -6,8 +6,9 @@ export default function DescriptionList () {
 
   const ticketContext = useContext(TicketContext);
   let { id } = useParams();
-  id = id ?? ticketContext[0].tag
-  const current = ticketContext.find(({ tag }) => tag == id)
+  let current = ticketContext.find(({ tag }) => tag == id)
+
+  current = current ?? ticketContext[0];
 
   const rows = [
     { title: "Ticket #", name: "tag" },
@@ -38,7 +39,7 @@ export default function DescriptionList () {
               {title}
             </dt>
             <dd className="mt-1 text-xs md:text-sm text-gray-400 sm:mt-0 sm:col-span-2">
-              {prop ? current[name][prop] : current[name]}
+              {current ? prop ? current[name][prop] : current[name] : ""}
             </dd>
           </div>))
           }
