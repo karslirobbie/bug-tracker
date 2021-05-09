@@ -27,7 +27,7 @@ export default class TicketModal extends Form {
 
     if (!valid) return console.log('Errors')
 
-    this.props.handleHide()
+    this.resetErrors()
     // console.log(await createTicket('Hello'));
   };
 
@@ -72,7 +72,7 @@ export default class TicketModal extends Form {
             </div>
           </div>}
         onSubmit={this.handleSubmit}
-        onHide={this.props.handleHide} />
+        onHide={this.resetErrors} />
     )
   }
 }

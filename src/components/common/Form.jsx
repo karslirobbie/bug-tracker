@@ -3,27 +3,27 @@ import Input from './Input'
 import Dropdown from './Dropdown'
 import InputDescription from './InputDescription'
 import RegularInput from './RegularInput'
-import Joi from 'joi'
+
 
 export default class Form extends Component {
 
   handleChange = ({ currentTarget }) => {
-    const {name, value } = currentTarget
+    const { name, value } = currentTarget
     const data = { ...this.state.data };
     data[name] = value;
     this.setState({ data })
-    this.validateOne({name,value })
+    this.validateOne({ name, value })
   }
 
-  validateOne = ({name, value }) => {
+  validateOne = ({ name, value }) => {
     const schema = this.schema.extract(name);
     const { error } = schema.validate(value);
 
     let errors = [...this.state.errors]
-    errors = errors.filter(({path}) => path!=name)
+    errors = errors.filter(({ path }) => path != name)
 
     if (error) {
-      const err = {path: name, message: error.details[0].message}
+      const err = { path: name, message: error.details[0].message }
       errors = [...errors, err]
       this.setState({ errors })
       return false;
@@ -38,12 +38,17 @@ export default class Form extends Component {
 
     if (error) {
       let errors = [];
-      error.details.map(err => errors.push({path: err.path[0], message: err.message}))
+      error.details.map(err => errors.push({ path: err.path[0], message: err.message }))
       this.setState({ errors })
       return false;
     }
 
     return true;
+  }
+
+  resetErrors = () => {
+    this.setState({ errors: [] })
+    this.props.handleHide()
   }
 
   errorMessage = (name) => this.state.errors.find(({ path }) => path == name)?.message
@@ -57,7 +62,7 @@ export default class Form extends Component {
   }
 
   renderInput = ({ name, placeholder, type = "text" }) => {
-    return <Input name={name} type={type} onChange={this.handleChange} placeholder={placeholder} error={this.errorMessage(name)} />
+    return <Input name={name} type={type} onChange={this.handleChange} placeholder={placeholder} />
   }
 
   renderInputDescription = ({ name, type }) => {

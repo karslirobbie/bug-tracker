@@ -26,9 +26,11 @@ export default class ProjectModal extends Form {
 
     if (!valid) return console.log('Errors')
 
-    this.props.handleHide()
+    this.resetErrors()
     // console.log(await createTicket('Hello'));
   };
+
+
 
   render () {
     return (
@@ -70,7 +72,7 @@ export default class ProjectModal extends Form {
             </div>
           </div>}
         onSubmit={this.handleSubmit}
-        onHide={this.props.handleHide} />
+        onHide={this.resetErrors} />
     )
   }
 }
