@@ -12,6 +12,7 @@ export default class TicketModal extends Form {
     errors: []
   }
 
+
   schema = Joi.object({
     title: Joi.string().required().max(55).label('Title'),
     description: Joi.string().required(255).label('Description'),
@@ -22,14 +23,16 @@ export default class TicketModal extends Form {
     urgency: Joi.string().required().label('Urgency')
   })
 
-  handleSubmit = () => {
+
+  handleSubmit = async () => {
     const valid = this.validateAll(this.state.data)
 
     if (!valid) return console.log('Errors')
 
     this.resetErrors()
-    // console.log(await createTicket('Hello'));
+    console.log(await createTicket(this.state.data));
   };
+
 
   render () {
     return (

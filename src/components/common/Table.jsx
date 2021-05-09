@@ -1,9 +1,8 @@
 import React, { Fragment, useContext, useState } from 'react'
-import { ReactComponent as ID } from '../../images/id.svg'
-import Pagination from './Pagination'
 import { useHistory } from 'react-router-dom'
-import TicketContext from '../../contexts/ticketContext';
-import ProjectContext from '../../contexts/projectContext'
+import { ReactComponent as ID } from '../../images/id.svg'
+import { TicketContext, ProjectContext } from '../../context';
+import Pagination from './Pagination'
 
 function Table ({ header, type }) {
   let history = useHistory();

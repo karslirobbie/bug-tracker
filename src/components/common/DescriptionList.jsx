@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
-import TicketContext from '../../contexts/ticketContext'
+import { TicketContext } from '../../context'
 
 export default function DescriptionList () {
 

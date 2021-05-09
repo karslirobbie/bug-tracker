@@ -7,6 +7,7 @@ import RegularInput from './RegularInput'
 
 export default class Form extends Component {
 
+
   handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget
     const data = { ...this.state.data };
@@ -15,11 +16,12 @@ export default class Form extends Component {
     this.validateOne({ name, value })
   }
 
+
   validateOne = ({ name, value }) => {
     const schema = this.schema.extract(name);
     const { error } = schema.validate(value);
-
     let errors = [...this.state.errors]
+
     errors = errors.filter(({ path }) => path != name)
 
     if (error) {
@@ -32,6 +34,7 @@ export default class Form extends Component {
     this.setState({ errors })
     return true;
   }
+
 
   validateAll = (body) => {
     const { error } = this.schema.validate(body, { abortEarly: false })
@@ -46,20 +49,15 @@ export default class Form extends Component {
     return true;
   }
 
+
   resetErrors = () => {
     this.setState({ errors: [] })
     this.props.handleHide()
   }
 
+
   errorMessage = (name) => this.state.errors.find(({ path }) => path == name)?.message
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-  }
-
-  handleClick = () => {
-
-  }
 
   renderInput = ({ name, placeholder, type = "text" }) => {
     return <Input name={name} type={type} onChange={this.handleChange} placeholder={placeholder} />
@@ -76,6 +74,5 @@ export default class Form extends Component {
   renderDropdown = ({ label, name, data }) => {
     return <Dropdown label={label} name={name} data={data} onChange={this.handleChange} error={this.errorMessage(name)} />
   }
-
 
 }
