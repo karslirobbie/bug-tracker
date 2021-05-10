@@ -7,6 +7,9 @@ import RegularInput from './RegularInput'
 
 export default class Form extends Component {
 
+  status = [{ label: 'Open' }, { label: 'In Progress' }, { label: 'Done' }];
+  urgency = [{ label: 'Low' }, { label: 'Med' }, { label: 'High' }];
+  type = [{ label: 'Task' }, { label: 'Bug' }, { label: 'Feature' }];
 
   handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget

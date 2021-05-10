@@ -2,9 +2,10 @@ import React, { Suspense, useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ReactComponent as Loading } from './images/loading.svg'
 import Errorboundary from './components/common/ErrorBoundary'
-import { TicketProvider, ProjectProvider } from './context'
+import { TicketProvider, ProjectProvider, UserProvider } from './context'
 import { getTickets } from './services/ticketService'
 import { getProjects } from './services/projectService'
+import { getUsers } from './services/userService'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import routes from './routes'
@@ -13,6 +14,8 @@ import routes from './routes'
 function App () {
   const [tickets, setTickets] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [users, setUsers] = useState([]);
+
 
   useEffect(() => {
     const populate = async () => {
@@ -32,6 +35,15 @@ function App () {
   }, ['projects'])
 
 
+  useEffect(() => {
+    const populate = async () => {
+      const users = await getUsers();
+      setUsers(users);
+    }
+    populate()
+  }, ['users'])
+
+
   return (
     <div className="App w-screen h-screen bg-gray-800 font-poppins">
       <ToastContainer />
@@ -46,11 +58,13 @@ function App () {
                     <Route key={path} exact path={path} render={(props) => {
                       return (
                         <Errorboundary>
-                          <ProjectProvider value={projects}>
-                            <TicketProvider value={tickets}>
-                              <Component {...props} />
-                            </TicketProvider>
-                          </ProjectProvider>
+                          <UserProvider value={users}>
+                            <ProjectProvider value={projects}>
+                              <TicketProvider value={tickets}>
+                                <Component {...props} />
+                              </TicketProvider>
+                            </ProjectProvider>
+                          </UserProvider>
                         </Errorboundary>
                       )
                     }} />

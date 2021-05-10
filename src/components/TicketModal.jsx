@@ -7,6 +7,7 @@ import Joi from 'joi'
 
 
 export default class TicketModal extends Form {
+
   state = {
     data: {},
     errors: []
@@ -23,18 +24,21 @@ export default class TicketModal extends Form {
     urgency: Joi.string().required().label('Urgency')
   })
 
+  tag = this.props.projects.find(({ _id }) => this.state.data.project == _id)?.alias
+
 
   handleSubmit = async () => {
     const valid = this.validateAll(this.state.data)
 
     if (!valid) return console.log('Errors')
-
+    const data = { ...this.state.data, tag: this.tag }
     this.resetErrors()
-    console.log(await createTicket(this.state.data));
+    console.log(await createTicket(data));
   };
 
 
   render () {
+
     return (
       <ModalTemplate
         title="Tickets"
@@ -51,19 +55,19 @@ export default class TicketModal extends Form {
                       {this.renderInputDescription({ type: 'ticket', name: 'description' })}
 
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Status', name: 'status', data: ['Open', 'In Progress', 'Done'] })}
+                        {this.renderDropdown({ label: 'Status', name: 'status', data: this.status })}
                       </div>
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Urgency', name: 'urgency', data: ['Low', 'Med', 'High'] })}
+                        {this.renderDropdown({ label: 'Urgency', name: 'urgency', data: this.urgency })}
                       </div>
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Type', name: 'type', data: ['Task', 'Bug', 'Feature'] })}
+                        {this.renderDropdown({ label: 'Type', name: 'type', data: this.type })}
                       </div>
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Project', name: 'project', data: ['Project 1', 'Project 2'] })}
+                        {this.renderDropdown({ label: 'Project', name: 'project', data: this.props.projects })}
                       </div>
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Assign To', name: 'assignedTo', data: ['Robbie Karsli'] })}
+                        {this.renderDropdown({ label: 'Assign To', name: 'assignedTo', data: this.props.users })}
                       </div>
                       <div>
                         <Attachment />
@@ -75,7 +79,8 @@ export default class TicketModal extends Form {
             </div>
           </div>}
         onSubmit={this.handleSubmit}
-        onHide={this.resetErrors} />
+        onHide={this.resetErrors}
+      />
     )
   }
 }
