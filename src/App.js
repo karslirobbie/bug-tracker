@@ -1,14 +1,13 @@
-import React, { Suspense, useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { TicketProvider, ProjectProvider, UserProvider } from './context'
 import { ReactComponent as Loading } from './images/loading.svg'
 import Errorboundary from './components/common/ErrorBoundary'
-import { TicketProvider, ProjectProvider, UserProvider } from './context'
-import { getTickets } from './services/ticketService'
-import { getProjects } from './services/projectService'
-import { getCurrentUser, getUsers } from './services/userService'
+import React, { Suspense, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
+import { usePopulateState } from './customHook'
 import 'react-toastify/dist/ReactToastify.css'
 import routes from './routes'
+
 
 
 function App () {
@@ -16,41 +15,13 @@ function App () {
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState({ currentUser: "", all: [] });
 
-
-  useEffect(() => {
-    const populate = async () => {
-      const tickets = await getTickets();
-      setTickets(tickets);
-    }
-    populate()
-  }, ['tickets'])
-
-
-  useEffect(() => {
-    const populate = async () => {
-      const projects = await getProjects();
-      setProjects(projects);
-    }
-    populate()
-  }, ['projects'])
-
-
-  useEffect(() => {
-    const populate = async () => {
-      const users = await getUsers();
-      const currentUser = await getCurrentUser();
-      setUsers({ all: users, currentUser });
-    }
-    populate()
-  }, ['users'])
-
+  usePopulateState({ setTickets, setProjects, setUsers })
 
   return (
     <div className="App w-screen h-screen bg-gray-800 font-poppins">
       <ToastContainer />
       <Router>
         <Suspense fallback={<div className="flex h-full justify-center place-items-center"><Loading /></div>}>
-
           <Route render={({ location }) => {
             return (
               <Switch location={location}>
