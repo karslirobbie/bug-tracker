@@ -13,7 +13,6 @@ export default class TicketModal extends Form {
     errors: []
   }
 
-
   schema = Joi.object({
     title: Joi.string().required().max(55).label('Title'),
     description: Joi.string().required(255).label('Description'),
@@ -31,14 +30,14 @@ export default class TicketModal extends Form {
     const valid = this.validateAll(this.state.data)
 
     if (!valid) return console.log('Errors')
-    const data = { ...this.state.data, tag: this.tag }
+
+    const data = { ...this.state.data, tag: this.tag, createdBy: this.props.currentUser }
     this.resetErrors()
-    console.log(await createTicket(data));
+    this.props.setState(await createTicket(data))
   };
 
 
   render () {
-
     return (
       <ModalTemplate
         title="Tickets"

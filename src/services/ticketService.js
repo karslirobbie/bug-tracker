@@ -9,12 +9,12 @@ export const getTickets = async () => {
 }
 
 
-export const createTicket = async ({ ...rest }) => {
-  // const { data: ticket } = await axios.post(url, {
-  //   assignee: '605bf3ea30b6ce131c1d4524',
-  //   createdBy: '605bf3ea30b6ce131c1d4524',
-  //   ...rest,
-  // })
+export const createTicket = async ({ createdBy, ...body }) => {
+  const { data: ticket } = await axios.post(url, {
+    assignee: createdBy,
+    createdBy,
+    ...body,
+  })
 
-  return rest;
+  return ticket;
 }

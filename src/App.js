@@ -5,7 +5,7 @@ import Errorboundary from './components/common/ErrorBoundary'
 import { TicketProvider, ProjectProvider, UserProvider } from './context'
 import { getTickets } from './services/ticketService'
 import { getProjects } from './services/projectService'
-import { getUsers } from './services/userService'
+import { getCurrentUser, getUsers } from './services/userService'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import routes from './routes'
@@ -14,7 +14,7 @@ import routes from './routes'
 function App () {
   const [tickets, setTickets] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState({ currentUser: "", all: [] });
 
 
   useEffect(() => {
@@ -38,7 +38,8 @@ function App () {
   useEffect(() => {
     const populate = async () => {
       const users = await getUsers();
-      setUsers(users);
+      const currentUser = await getCurrentUser();
+      setUsers({ all: users, currentUser });
     }
     populate()
   }, ['users'])
@@ -60,7 +61,7 @@ function App () {
                         <Errorboundary>
                           <UserProvider value={users}>
                             <ProjectProvider value={projects}>
-                              <TicketProvider value={tickets}>
+                              <TicketProvider value={{ tickets, setTickets }}>
                                 <Component {...props} />
                               </TicketProvider>
                             </ProjectProvider>

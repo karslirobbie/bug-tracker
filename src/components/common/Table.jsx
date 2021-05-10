@@ -5,16 +5,17 @@ import { TicketContext, ProjectContext } from '../../context';
 import Pagination from './Pagination'
 
 function Table ({ header, type }) {
-  let history = useHistory();
-  const classes = "px-2 inline-flex text-xs leading-5 font-semibold rounded-full";
-
-  const ticketContext = useContext(TicketContext);
-  const projectContext = useContext(ProjectContext)
-  const data = type == "tickets" ? ticketContext : projectContext;
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  let history = useHistory();
+
+  const { tickets } = useContext(TicketContext);
+  const projectContext = useContext(ProjectContext)
+  const data = type == "tickets" ? tickets : projectContext;
+
   const handleNextPage = (page) => console.log(page)
+  const classes = "px-2 inline-flex text-xs leading-5 font-semibold rounded-full";
 
   return (
     <Fragment>

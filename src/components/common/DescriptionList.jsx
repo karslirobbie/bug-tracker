@@ -4,11 +4,11 @@ import { TicketContext } from '../../context'
 
 export default function DescriptionList () {
 
-  const ticketContext = useContext(TicketContext);
+  const { tickets } = useContext(TicketContext);
   let { id } = useParams();
-  let current = ticketContext.find(({ tag }) => tag == id)
+  let current = tickets.find(({ tag }) => tag == id)
 
-  current = current ?? ticketContext[0];
+  current = current ?? tickets[0];
 
   const rows = [
     { title: "Ticket #", name: "tag" },

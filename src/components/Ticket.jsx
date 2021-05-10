@@ -9,9 +9,10 @@ import TicketModal from './TicketModal'
 
 
 export default function Ticket () {
-  const ticketContext = useContext(TicketContext);
+
+  const { tickets, setTickets } = useContext(TicketContext);
   const projectContext = useContext(ProjectContext);
-  const userContext = useContext(UserContext);
+  const { all: users, currentUser } = useContext(UserContext);
 
   const [show, setShow] = useState(false)
 
@@ -19,7 +20,14 @@ export default function Ticket () {
   const userOptions = [];
 
   projectContext.map(({ title, _id, alias }) => projectOptions.push({ label: title, value: _id, alias }))
-  userContext.map(({ _id, name }) => userOptions.push({ label: name, value: _id }))
+  users.map(({ _id, name }) => userOptions.push({ label: name, value: _id }))
+
+
+  const setState = (ticket) => {
+    const state = [...tickets, ticket]
+    setTickets(state)
+  }
+
 
   return (
     <PageTemplate
@@ -27,12 +35,14 @@ export default function Ticket () {
         <Header onShow={() => setShow(true)}>
           <TicketModal
             show={show}
+            setState={setState}
             projects={projectOptions}
             users={userOptions}
+            currentUser={currentUser._id}
             handleHide={() => setShow(false)} />
         </Header>}
-      main={<Table data={ticketContext.tickets} />}
-      other={<DescriptionList data={ticketContext.tickets} />}
+      main={<Table type="tickets" />}
+      other={<DescriptionList />}
     />
   )
 }
