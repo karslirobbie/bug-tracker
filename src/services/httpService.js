@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL

@@ -23,24 +23,12 @@ export default class TicketModal extends Form {
     urgency: Joi.string().required().label('Urgency')
   })
 
-  tag = this.props.projects.find(({ _id }) => this.state.data.project == _id)?.alias
-
-
-  handleSubmit = async () => {
-    const valid = this.validateAll(this.state.data)
-
-    if (!valid) return console.log('Errors')
-
-    const data = { ...this.state.data, tag: this.tag, createdBy: this.props.currentUser }
-    this.resetErrors()
-    this.props.setState(await createTicket(data))
-  };
-
 
   render () {
+    const tag = this.props.projects.find(({ value }) => value == this.state.data.project)?.alias
+
     return (
       <ModalTemplate
-        title="Tickets"
         show={this.props.show}
         content={
           <div className="flex justify-center bg-gray-900 w-full h-full overflow-auto">
@@ -77,7 +65,7 @@ export default class TicketModal extends Form {
               </div>
             </div>
           </div>}
-        onSubmit={this.handleSubmit}
+        onSubmit={() => this.handleSubmit({ tag }, createTicket)}
         onHide={this.resetErrors}
       />
     )

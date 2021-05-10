@@ -11,7 +11,7 @@ import TicketModal from './TicketModal'
 export default function Ticket () {
 
   const { tickets, setTickets } = useContext(TicketContext);
-  const projectContext = useContext(ProjectContext);
+  const { projects } = useContext(ProjectContext);
   const { all: users, currentUser } = useContext(UserContext);
 
   const [show, setShow] = useState(false)
@@ -19,7 +19,7 @@ export default function Ticket () {
   const projectOptions = [];
   const userOptions = [];
 
-  projectContext.map(({ title, _id, alias }) => projectOptions.push({ label: title, value: _id, alias }))
+  projects.map(({ title, _id, alias }) => projectOptions.push({ label: title, value: _id, alias }))
   users.map(({ _id, name }) => userOptions.push({ label: name, value: _id }))
 
 

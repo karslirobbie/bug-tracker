@@ -3,6 +3,8 @@ import Input from './Input'
 import Dropdown from './Dropdown'
 import InputDescription from './InputDescription'
 import RegularInput from './RegularInput'
+import { toast } from 'react-toastify'
+
 
 
 export default class Form extends Component {
@@ -10,6 +12,19 @@ export default class Form extends Component {
   status = [{ label: 'Open' }, { label: 'In Progress' }, { label: 'Done' }];
   urgency = [{ label: 'Low' }, { label: 'Med' }, { label: 'High' }];
   type = [{ label: 'Task' }, { label: 'Bug' }, { label: 'Feature' }];
+
+
+  handleSubmit = async ({ tag }, exec) => {
+    const valid = this.validateAll(this.state.data)
+
+    if (!valid) return console.log('Errors')
+
+    const data = { ...this.state.data, createdBy: this.props.currentUser, tag }
+    this.resetErrors()
+    this.props.setState(await exec(data))
+    toast.dark('Creation Success.')
+  };
+
 
   handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget

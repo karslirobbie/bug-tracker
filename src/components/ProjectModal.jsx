@@ -1,8 +1,8 @@
+import Joi from 'joi'
 import React from 'react'
 import Form from './common/Form'
-import { createTicket } from '../services/ticketService'
 import ModalTemplate from './common/ModalTemplate'
-import Joi from 'joi'
+import { createProject } from '../services/projectService'
 
 
 export default class ProjectModal extends Form {
@@ -18,24 +18,12 @@ export default class ProjectModal extends Form {
     status: Joi.string().required().label('Status'),
     team: Joi.string().label('Team'),
     department: Joi.string().label('Department'),
-    urgency: Joi.string().required().label('Urgency'),
   })
-
-  handleSubmit = () => {
-    const valid = this.validateAll(this.state.data)
-
-    if (!valid) return console.log('Errors')
-
-    this.resetErrors()
-    // console.log(await createTicket('Hello'));
-  };
-
 
 
   render () {
     return (
       <ModalTemplate
-        title="Tickets"
         show={this.props.show}
         content={
           <div className="flex justify-center bg-gray-900 w-full h-full overflow-auto">
@@ -51,11 +39,7 @@ export default class ProjectModal extends Form {
                       {this.renderInputDescription({ type: 'ticket', name: 'description' })}
 
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Status', name: 'status', data: ['Open', 'In Progress', 'Done'] })}
-                      </div>
-
-                      <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Urgency', name: 'urgency', data: ['Low', 'Med', 'High'] })}
+                        {this.renderDropdown({ label: 'Status', name: 'status', data: this.status })}
                       </div>
 
                       <div className="col-span-6 sm:col-span-3">
@@ -63,7 +47,7 @@ export default class ProjectModal extends Form {
                       </div>
 
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Department', name: 'department', data: ['Department 1', 'Department 2', 'Department 3'] })}
+                        {this.renderDropdown({ label: 'Department', name: 'department', data: [{ label: 'Department 1', value: '60575cec79f0ce1504a93c66' }, { label: 'Department 2', value: "60575cec79f0ce1504a93c66" }, { label: 'Department 3', value: "60575cec79f0ce1504a93c66" }] })}
                       </div>
                     </div>
                   </div>
@@ -71,7 +55,7 @@ export default class ProjectModal extends Form {
               </div>
             </div>
           </div>}
-        onSubmit={this.handleSubmit}
+        onSubmit={() => this.handleSubmit({}, createProject)}
         onHide={this.resetErrors} />
     )
   }

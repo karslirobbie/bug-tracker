@@ -31,7 +31,7 @@ function App () {
                       return (
                         <Errorboundary>
                           <UserProvider value={users}>
-                            <ProjectProvider value={projects}>
+                            <ProjectProvider value={{ projects, setProjects }}>
                               <TicketProvider value={{ tickets, setTickets }}>
                                 <Component {...props} />
                               </TicketProvider>
