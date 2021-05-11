@@ -11,12 +11,12 @@ import Nav from './common/Nav'
 export default function Report () {
 
   const [series, setSeries] = useState([])
-  const [selectedProject, setSelectedProject] = useState("")
+  const [selectedProject, setSelectedProject] = useState(null)
 
 
   useEffect(() => {
-    setSeries([completedPerProject()])
-  }, [series])
+    setSeries([percentage])
+  }, [selectedProject])
 
 
   const { projects } = useContext(ProjectContext);
@@ -27,8 +27,11 @@ export default function Report () {
   projects.map(({ _id, title }) => projectOptions.push({ label: title, value: _id }))
 
 
-  const ticketsPerProject = () => tickets.filter(({ project, status }) => selectedProject ? project._id == selectedProject && status != "Done" : status != "Done")
-  const completedPerProject = () => tickets.filter(({ project, status }) => selectedProject ? project._id == selectedProject && status == "Done" : status == "Done")?.length
+  const ticketsPerProject = () => selectedProject ? tickets.filter(({ project }) => project._id == selectedProject) : tickets
+  const ticketsNotDonePerProject = () => ticketsPerProject().filter(({ status }) => status != "Done")
+  const completedPerProject = () => ticketsPerProject().filter(({ status }) => status == "Done")?.length
+
+  const percentage = Math.round(100 * (completedPerProject() / ticketsPerProject().length)) || 0;
 
 
   return (
@@ -41,7 +44,7 @@ export default function Report () {
             <RadialBar series={series} />
           </div>
           <div className="w-full lg:w-full h-1/2 lg:h-full flex flex-col justify-center">
-            <Table list={ticketsPerProject()} />
+            <Table list={ticketsNotDonePerProject()} />
           </div>
         </main>
       </div>
