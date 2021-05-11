@@ -6,11 +6,21 @@ import { getDepartments } from './services/departmentService'
 import { getCurrentUser, getUsers } from './services/userService'
 
 
-export const usePopulateState = ({ setTickets, setProjects, setUsers, setTeamDepartments }) => {
+export const usePopulateState = ({ users: { currentUser }, setTickets, setProjects, setUsers, setTeamDepartments }) => {
 
   useEffect(() => {
     const populate = async () => {
-      const tickets = await getTickets();
+      const users = await getUsers();
+      const currentUser = await getCurrentUser();
+      setUsers({ all: users, currentUser });
+    }
+    populate()
+  }, ['users'])
+
+
+  useEffect(() => {
+    const populate = async () => {
+      const tickets = await getTickets(currentUser);
       setTickets(tickets);
     }
     populate()
@@ -25,15 +35,6 @@ export const usePopulateState = ({ setTickets, setProjects, setUsers, setTeamDep
     populate()
   }, ['projects'])
 
-
-  useEffect(() => {
-    const populate = async () => {
-      const users = await getUsers();
-      const currentUser = await getCurrentUser();
-      setUsers({ all: users, currentUser });
-    }
-    populate()
-  }, ['users'])
 
 
   useEffect(() => {

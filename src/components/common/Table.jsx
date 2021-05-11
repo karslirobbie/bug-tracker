@@ -4,7 +4,7 @@ import { ReactComponent as ID } from '../../images/id.svg'
 import { TicketContext, ProjectContext } from '../../context';
 import Pagination from './Pagination'
 
-function Table ({ header, type }) {
+function Table ({ header, type, list }) {
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -12,13 +12,13 @@ function Table ({ header, type }) {
 
   const { tickets } = useContext(TicketContext);
   const { projects } = useContext(ProjectContext)
-  const data = type == "tickets" ? tickets : projects;
+  const data = list ? list : type == "tickets" ? tickets : projects;
 
   const handleNextPage = (page) => console.log(page)
   const classes = "px-2 inline-flex text-xs leading-5 font-semibold rounded-full";
 
   return (
-    <Fragment>
+    <div className="h-full">
       <div className="py-2 w-full px-4 mb-6 lg:pr-8 h-3/4 overflow-y-auto">
         <div className="overflow-x-scroll border-b border-t bg-gray-900 border-l border-r border-gray-900 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-800">
@@ -76,11 +76,11 @@ function Table ({ header, type }) {
         </div>
       </div>
       <Pagination
-        type={type}
+        data={data}
         currentPage={currentPage}
         onPageChange={handleNextPage}
       />
-    </Fragment>
+    </div>
   )
 }
 

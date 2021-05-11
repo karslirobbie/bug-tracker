@@ -1,12 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import _ from 'lodash'
-import { TicketContext, ProjectContext } from '../../context'
 
-export default function Pagination ({ type, currentPage, onPageChange }) {
-  const { tickets } = useContext(TicketContext);
-  const { projects } = useContext(ProjectContext);
 
-  const data = type == "tickets" ? tickets : projects;
+export default function Pagination ({ currentPage, data, onPageChange }) {
 
   let pages = Math.round(data.length / 20);
   pages = pages == 0 ? 1 : pages;
