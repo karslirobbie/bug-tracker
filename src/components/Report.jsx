@@ -1,24 +1,34 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import { ProjectContext, TicketContext } from '../context'
 import RadialBar from './common/charts/RadialBar';
 import BasicHeader from './common/BasicHeader'
-import { ProjectContext, TicketContext } from '../context'
 import Dropdown from './common/Dropdown'
 import Table from './common/Table'
 import Nav from './common/Nav'
 
 
+
 export default function Report () {
 
-  const [series, setSeries] = useState([99])
+  const [series, setSeries] = useState([])
   const [selectedProject, setSelectedProject] = useState("")
+
+
+  useEffect(() => {
+    setSeries([completedPerProject()])
+  }, [series])
+
 
   const { projects } = useContext(ProjectContext);
   const { tickets } = useContext(TicketContext)
 
+
   const projectOptions = [];
   projects.map(({ _id, title }) => projectOptions.push({ label: title, value: _id }))
 
-  const ticketsOfProject = () => tickets.filter(({ project, status }) => project._id == selectedProject && status != "Done")
+
+  const ticketsPerProject = () => tickets.filter(({ project, status }) => selectedProject ? project._id == selectedProject && status != "Done" : status != "Done")
+  const completedPerProject = () => tickets.filter(({ project, status }) => selectedProject ? project._id == selectedProject && status == "Done" : status == "Done")?.length
 
 
   return (
@@ -31,7 +41,7 @@ export default function Report () {
             <RadialBar series={series} />
           </div>
           <div className="w-full lg:w-full h-1/2 lg:h-full flex flex-col justify-center">
-            <Table list={selectedProject ? ticketsOfProject() : tickets.filter(({ status }) => status != "Done")} />
+            <Table list={ticketsPerProject()} />
           </div>
         </main>
       </div>
