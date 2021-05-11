@@ -3,10 +3,10 @@ import _ from 'lodash'
 import { TicketContext, ProjectContext } from '../../context'
 
 export default function Pagination ({ type, currentPage, onPageChange }) {
-  const ticketContext = useContext(TicketContext);
-  const projectContext = useContext(ProjectContext);
+  const { tickets } = useContext(TicketContext);
+  const { projects } = useContext(ProjectContext);
 
-  const data = type == "tickets" ? ticketContext : projectContext;
+  const data = type == "tickets" ? tickets : projects;
 
   let pages = Math.round(data.length / 20);
   pages = pages == 0 ? 1 : pages;
@@ -15,7 +15,7 @@ export default function Pagination ({ type, currentPage, onPageChange }) {
   const shown = data.length < 20 ? data.length : 20 * pages;
 
   return (
-    <div className="flex justify-between place-items-center md:mx-10 mt-10">
+    <div className="flex justify-between place-items-center mx-10 mt-10">
       <p className="lg:text-sm text-gray-500">Showing {shown} of {data.length}</p>
 
       <nav className="bg-gray-900 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">

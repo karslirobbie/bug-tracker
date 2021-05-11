@@ -21,6 +21,10 @@ export default class ProjectModal extends Form {
   })
 
 
+  department = () => this.props.departments.find(({ value }) => value == this.state.data.department)?.label
+  teams = () => this.props.teams.filter(({ department }) => department == this.department())
+
+
   render () {
     return (
       <ModalTemplate
@@ -43,11 +47,11 @@ export default class ProjectModal extends Form {
                       </div>
 
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Team', name: 'team', data: ['Team 1', 'Team 2', 'Team 3'] })}
+                        {this.renderDropdown({ label: 'Department', name: 'department', data: this.props.departments })}
                       </div>
 
                       <div className="col-span-6 sm:col-span-3">
-                        {this.renderDropdown({ label: 'Department', name: 'department', data: [{ label: 'Department 1', value: '60575cec79f0ce1504a93c66' }, { label: 'Department 2', value: "60575cec79f0ce1504a93c66" }, { label: 'Department 3', value: "60575cec79f0ce1504a93c66" }] })}
+                        {this.renderDropdown({ label: 'Team', name: 'team', data: this.teams() })}
                       </div>
                     </div>
                   </div>

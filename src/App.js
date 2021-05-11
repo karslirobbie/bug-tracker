@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { TicketProvider, ProjectProvider, UserProvider } from './context'
+import { TicketProvider, ProjectProvider, UserProvider, TeamDepartmentProvider } from './context'
 import { ReactComponent as Loading } from './images/loading.svg'
 import Errorboundary from './components/common/ErrorBoundary'
 import React, { Suspense, useState } from 'react'
@@ -14,8 +14,9 @@ function App () {
   const [tickets, setTickets] = useState([]);
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState({ currentUser: "", all: [] });
+  const [teamDepartments, setTeamDepartments] = useState({ teams: [], departments: [] })
 
-  usePopulateState({ setTickets, setProjects, setUsers })
+  usePopulateState({ setTickets, setProjects, setUsers, setTeamDepartments })
 
   return (
     <div className="App w-screen h-screen bg-gray-800 font-poppins">
@@ -30,13 +31,15 @@ function App () {
                     <Route key={path} exact path={path} render={(props) => {
                       return (
                         <Errorboundary>
-                          <UserProvider value={users}>
-                            <ProjectProvider value={{ projects, setProjects }}>
-                              <TicketProvider value={{ tickets, setTickets }}>
-                                <Component {...props} />
-                              </TicketProvider>
-                            </ProjectProvider>
-                          </UserProvider>
+                          <TeamDepartmentProvider value={teamDepartments}>
+                            <UserProvider value={users}>
+                              <ProjectProvider value={{ projects, setProjects }}>
+                                <TicketProvider value={{ tickets, setTickets }}>
+                                  <Component {...props} />
+                                </TicketProvider>
+                              </ProjectProvider>
+                            </UserProvider>
+                          </TeamDepartmentProvider>
                         </Errorboundary>
                       )
                     }} />

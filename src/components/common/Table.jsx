@@ -19,7 +19,7 @@ function Table ({ header, type }) {
 
   return (
     <Fragment>
-      <div className="py-2 w-full md:px-4 mb-6  lg:pr-8 h-3/4 overflow-y-auto">
+      <div className="py-2 w-full px-4 mb-6 lg:pr-8 h-3/4 overflow-y-auto">
         <div className="overflow-x-scroll border-b border-t bg-gray-900 border-l border-r border-gray-900 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-800">
             <thead>
