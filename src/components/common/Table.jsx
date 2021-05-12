@@ -49,8 +49,14 @@ function Table ({ header, type, list }) {
                   </td>
 
                   <td className="flex px-3 md:px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap truncate">
-                    <div className="flex-none w-24 lg:w-32 xl:w-52 2xl:w-auto lg:text-sm text-gray-400">
+                    <div className="flex-none w-24 lg:w-32 xl:w-52 2xl:w-72 lg:text-sm text-gray-400">
                       <p className="truncate">{row.title} </p>
+                    </div>
+                  </td>
+
+                  <td className="px-3 md:px-5 xl:px-2 py-4 whitespace-nowrap text-gray-400">
+                    <div className="flex-none w-20 lg:w-32 xl:w-52 2xl:w-auto lg:text-sm text-gray-400">
+                      <p className="truncate">{row.description}</p>
                     </div>
                   </td>
                   <td className="px-3 md:px-5 xl:px-2 py-4 whitespace-nowrap text-gray-400">
@@ -85,7 +91,7 @@ function Table ({ header, type, list }) {
 }
 
 Table.defaultProps = {
-  header: [<ID />, 'Title', 'Status', 'Urgency'],
+  header: [<ID />, 'Title', 'Description', 'Status', 'Urgency'],
   type: "tickets"
 }
 
