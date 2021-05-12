@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Header from './common/Header'
 import Table from './common/Table'
-import DescriptionList from './common/DescriptionList'
 import PageTemplate from './common/PageTemplate'
 import { ProjectContext, TicketContext, UserContext } from '../context'
 import TicketModal from './TicketModal'
@@ -9,12 +8,11 @@ import TicketModal from './TicketModal'
 
 
 export default function Ticket () {
+  const [show, setShow] = useState(false)
 
   const { tickets, setTickets } = useContext(TicketContext);
   const { projects } = useContext(ProjectContext);
-  const { all: users, currentUser } = useContext(UserContext);
-
-  const [show, setShow] = useState(false)
+  const { users: { all: users, currentUser } } = useContext(UserContext);
 
   const projectOptions = [];
   const userOptions = [];
@@ -42,7 +40,6 @@ export default function Ticket () {
             handleHide={() => setShow(false)} />
         </Header>}
       main={<Table type="tickets" />}
-      other={<DescriptionList />}
     />
   )
 }

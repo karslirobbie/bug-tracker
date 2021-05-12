@@ -11,6 +11,8 @@ const Login = React.lazy(() => import('./components/SignIn'));
 const NotFound = React.lazy(() => import('./components/NotFound'))
 
 const Report = React.lazy(() => import('./components/Report'))
+const Admin = React.lazy(() => import('./components/admin/Admin'))
+
 
 const routes = [
 
@@ -41,6 +43,14 @@ const routes = [
   {
     path: "/report",
     component: Report
+  },
+  {
+    path: "/admin",
+    component: Admin
+  },
+  {
+    path: "/admin/:path",
+    component: Admin
   },
   {
     path: "/",

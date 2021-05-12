@@ -19,8 +19,8 @@ export default function Project () {
   const header = [<ID />, "title", "status", "created"];
 
   const { projects, setProjects } = useContext(ProjectContext);
-  const { teams, departments } = useContext(TeamDepartmentContext);
-  const { currentUser } = useContext(UserContext);
+  const { teamDepartments: { teams, departments } } = useContext(TeamDepartmentContext);
+  const { users: { currentUser } } = useContext(UserContext);
 
   const setState = (project) => {
     const state = [...projects, project]

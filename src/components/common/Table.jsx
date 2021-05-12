@@ -1,7 +1,7 @@
-import React, { Fragment, useContext, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { ReactComponent as ID } from '../../images/id.svg'
+import React, { useContext, useState } from 'react'
 import { TicketContext, ProjectContext } from '../../context';
+import { ReactComponent as ID } from '../../images/id.svg'
+import { useHistory } from 'react-router-dom'
 import Pagination from './Pagination'
 
 function Table ({ header, type, list }) {
@@ -13,6 +13,7 @@ function Table ({ header, type, list }) {
   const { tickets } = useContext(TicketContext);
   const { projects } = useContext(ProjectContext)
   const data = list ? list : type == "tickets" ? tickets : projects;
+
 
   const handleNextPage = (page) => console.log(page)
   const classes = "px-2 inline-flex text-xs leading-5 font-semibold rounded-full";
@@ -36,31 +37,31 @@ function Table ({ header, type, list }) {
             <tbody className="bg-gray-800 divide-y divide-gray-900">
               {data.map(row =>
                 <tr key={row._id}
-                  onClick={() => history.push({ pathname: `/${type}/${row.tag}` })}
+                  onClick={!list ? () => history.push(row.tag ? { pathname: `/${type}/${row.tag}` } : { pathname: `/${type}/${row._id}` }) : null}
                   className="cursor-pointer transition-all transform hover:scale-105 hover:bg-gray-900">
                   <td className="px-3 md:px-4 xl:px-2 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="xl:ml-2">
-                        <div className="lg:text-sm font-medium text-gray-400">
-                          {row.tag ?? row.alias}
+                        <div className="xl:text-sm font-medium text-gray-400">
+                          {row.tag ?? row.alias ?? row.name}
                         </div>
                       </div>
                     </div>
                   </td>
 
                   <td className="flex px-3 md:px-6 lg:px-2 xl:px-2 py-4 whitespace-wrap truncate">
-                    <div className="flex-none w-24 lg:w-32 xl:w-52 2xl:w-72 lg:text-sm text-gray-400">
-                      <p className="truncate">{row.title} </p>
+                    <div className="flex-none w-24 lg:w-32 xl:w-52 2xl:w-72 2xl:text-sm text-gray-400">
+                      <p className="truncate">{row.title ?? row.email ?? row.members?.map(({ name }) => name)}</p>
                     </div>
                   </td>
 
                   <td className="px-3 md:px-5 xl:px-2 py-4 whitespace-nowrap text-gray-400">
-                    <div className="flex-none w-20 lg:w-32 xl:w-52 2xl:w-auto lg:text-sm text-gray-400">
-                      <p className="truncate">{row.description}</p>
+                    <div className="flex-none w-20 lg:w-32 xl:w-52 2xl:w-auto 2xl:text-sm text-gray-400">
+                      <p className="truncate">{row.description ?? row.roles?.map(role => role) ?? row.department?.name}</p>
                     </div>
                   </td>
                   <td className="px-3 md:px-5 xl:px-2 py-4 whitespace-nowrap text-gray-400">
-                    {row.status}
+                    {row.status ?? row.projects?.map(({ title }) => title)}
                   </td>
                   <td className="px-3 md:px-5 xl:px-2 py-4 whitespace-wrap text-gray-400">
                     {

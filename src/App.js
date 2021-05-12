@@ -31,8 +31,8 @@ function App () {
                     <Route key={path} exact path={path} render={(props) => {
                       return (
                         <Errorboundary>
-                          <TeamDepartmentProvider value={teamDepartments}>
-                            <UserProvider value={users}>
+                          <TeamDepartmentProvider value={{ teamDepartments, setTeamDepartments }}>
+                            <UserProvider value={{ users, setUsers }}>
                               <ProjectProvider value={{ projects, setProjects }}>
                                 <TicketProvider value={{ tickets, setTickets }}>
                                   <Component {...props} />

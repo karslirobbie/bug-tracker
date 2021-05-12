@@ -2,11 +2,11 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import Nav from './Nav'
 
-export default function PageTemplate ({ header, main, other = null }) {
+export default function PageTemplate ({ header, main, admin }) {
   let location = useLocation()
   return (
     <div className="flex place-items-center overflow-hidden w-full h-full mr-5 xl:mr-10 rounded-lg text-xs text-gray-3000 bg-gray-800">
-      <Nav />
+      <Nav admin={admin} />
 
       {/* If current route is Project Status, use latter template */}
 
