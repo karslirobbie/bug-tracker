@@ -14,10 +14,12 @@ import { TeamDepartmentContext, UserContext, ProjectContext } from './context'
 
 export const usePopulateState = (props) => {
   const {
+    token,
     users: { currentUser },
     setTickets, setProjects, setUsers,
     setTeamDepartments
   } = props
+
 
   useEffect(() => {
     const populate = async () => {
@@ -26,7 +28,7 @@ export const usePopulateState = (props) => {
       setUsers({ all: users, currentUser });
     }
     populate()
-  }, ['users', 'token'])
+  }, ['users', token])
 
 
   useEffect(() => {

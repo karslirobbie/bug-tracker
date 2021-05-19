@@ -17,7 +17,7 @@ function App () {
   const [users, setUsers] = useState({ currentUser: "", all: [] });
   const [teamDepartments, setTeamDepartments] = useState({ teams: [], departments: [] })
 
-  usePopulateState({ users, setTickets, setProjects, setUsers, setTeamDepartments })
+  usePopulateState({ users, token, setTickets, setProjects, setUsers, setTeamDepartments })
 
   return (
     <div className="App w-screen h-screen bg-gray-800 font-poppins">

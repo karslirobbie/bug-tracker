@@ -4,11 +4,9 @@ import jwtDecode from 'jwt-decode'
 const url = '/users'
 
 
-const alternativeToken = { _id: "605bf3ea30b6ce131c1d4524", email: "clementerobbie@gmail.com", roles: ["admin"] }
-
 export const getCurrentUser = () => {
   const token = localStorage.getItem('token');
-  const decoded = token ? jwtDecode(token) : alternativeToken;
+  const decoded = token ? jwtDecode(token) : "";
 
   return decoded
 }
