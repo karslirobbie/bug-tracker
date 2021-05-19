@@ -1,15 +1,24 @@
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Form from './common/Form'
 import Button from './common/Button'
 import register from '../images/register.svg'
 import bounce from '../images/bounce.svg'
-
+import Joi from 'joi'
 export default class SignUp extends Form {
   state = {
-    data: {}
+    data: {},
+    errors: []
   }
+
+  schema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().email({ tlds: false }).required(),
+    password: Joi.string().required(),
+    role: Joi.string().required(),
+    team: Joi.string()
+  })
 
   render () {
     return (
@@ -24,19 +33,18 @@ export default class SignUp extends Form {
           </div>
 
           <div className="flex flex-col justify-center h-full place-items-center z-10">
-            <form className="mt-10 flex flex-col items-center h-1/2 place-content-center" onSubmit={this.handleSubmit}>
+            <div className="mt-10 flex flex-col items-center h-1/2 place-content-center">
               <h1 className="font-semibold text-md lg:text-xl text-gray-300">Not a member?</h1>
               <p className="text-xs text-gray-500">Create an account</p>
-              <div className="flex mt-5 md:mt-10">
-                {this.renderInput({ name: "firstname", placeholder: "First Name" })}
-                {this.renderInput({ name: "lastname", placeholder: "Last Name" })}
-              </div>
+
+              <div className="p-5"></div>
+              {this.renderInput({ name: "name", placeholder: "Name" })}
               <div className="flex">
                 {this.renderInput({ name: "firstname", placeholder: "Email" })}
                 {this.renderInput({ name: "lastname", placeholder: "Password", type: "password" })}
               </div>
               <div className="flex">
-                {this.renderInput({ name: "firstname", placeholder: "Roles" })}
+                {this.renderRegularDropdown({ name: "firstname", placeholder: "Role", data: this.roles })}
                 {this.renderInput({ name: "lastname", placeholder: "Team" })}
               </div>
               <div className="mt-4 md:mt-12 flex w-full flex-col items-center">
@@ -44,7 +52,7 @@ export default class SignUp extends Form {
                 <p className="text-xs mt-3 text-gray-400">or</p>
                 <p className="text-xs mt-1 underline cursor-pointer text-lime-400 "><Link to="/login">Sign In</Link></p>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

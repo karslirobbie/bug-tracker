@@ -3,6 +3,7 @@ import Input from './Input'
 import Dropdown from './Dropdown'
 import InputDescription from './InputDescription'
 import RegularInput from './RegularInput'
+import RegularDropdown from './RegularDropdown'
 import { toast } from 'react-toastify'
 
 
@@ -93,4 +94,7 @@ export default class Form extends Component {
     return <Dropdown label={label} name={name} data={data} onChange={this.handleChange} error={this.errorMessage(name)} />
   }
 
+  renderRegularDropdown = ({ name, data, placeholder }) => {
+    return <RegularDropdown name={name} placeholder={placeholder} data={data} onChange={this.handleChange} error={this.errorMessage(name)} />
+  }
 }
