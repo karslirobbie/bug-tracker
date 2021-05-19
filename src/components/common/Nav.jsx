@@ -64,10 +64,10 @@ export default function Nav ({ admin }) {
 
 
   return (
-    <nav className="hidden md:flex text-xs flex-col w-28 h-full bg-gray-900 rounded-lg text-gray-2000 ">
+    <nav className="z-50 text-xs flex-col w-28 h-full bg-gray-900 rounded-lg text-gray-2000 ">
       <div className="flex flex-col justify-center gap-12 place-items-center h-3/4 w-full">
         {links().map(({ title, content, path }) =>
-          <Link key={title} to={path}>
+          <Link key={title} to={path} className="outline-none">
             <div key={title} className="flex flex-col cursor-pointer justify-center place-items-center gap-3 transform hover:scale-110 transition-all delay-100 ease-in">
               <div className="flex justify-center place-items-center w-10 h-10 bg-gray-800 text-lime-400 rounded-full transform transition-all hover:shadow-xl">
                 {content}

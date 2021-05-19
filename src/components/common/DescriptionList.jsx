@@ -61,9 +61,9 @@ export default function DescriptionList () {
                     </span>
                   </div>
                   <div className="ml-4 flex-shrink-0">
-                    <a href="#" className="font-medium text-lime-400 hover:text-gray-500">
+                    <div className="font-medium text-lime-400 hover:text-gray-500">
                       Download
-                    </a>
+                    </div>
                   </div>
                 </li>
 
