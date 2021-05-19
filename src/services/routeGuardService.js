@@ -1,7 +1,10 @@
 
 export const requireLogin = (to, from, next) => {
   if (localStorage.getItem('token')) {
-    if (to.location.pathname != '/login' || to.location.pathname != '/') {
+
+    const publicRoutes = ['/', '/login', '/signup']
+
+    if (!publicRoutes.includes(to.location.pathname)) {
       next();
     }
     next.redirect('/tickets');
