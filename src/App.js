@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { TicketProvider, ProjectProvider, UserProvider, TeamDepartmentProvider } from './context'
+import { TicketProvider, ProjectProvider, UserProvider, AuthProvider, TeamDepartmentProvider } from './context'
 import { ReactComponent as Loading } from './images/loading.svg'
 import Errorboundary from './components/common/ErrorBoundary'
 import React, { Suspense, useState } from 'react'
@@ -11,6 +11,7 @@ import routes from './routes'
 
 
 function App () {
+  const [token, setToken] = useState("")
   const [tickets, setTickets] = useState([]);
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState({ currentUser: "", all: [] });
@@ -33,11 +34,13 @@ function App () {
                         <Errorboundary>
                           <TeamDepartmentProvider value={{ teamDepartments, setTeamDepartments }}>
                             <UserProvider value={{ users, setUsers }}>
-                              <ProjectProvider value={{ projects, setProjects }}>
-                                <TicketProvider value={{ tickets, setTickets }}>
-                                  <Component {...props} />
-                                </TicketProvider>
-                              </ProjectProvider>
+                              <AuthProvider value={{ token, setToken }}>
+                                <ProjectProvider value={{ projects, setProjects }}>
+                                  <TicketProvider value={{ tickets, setTickets }}>
+                                    <Component {...props} />
+                                  </TicketProvider>
+                                </ProjectProvider>
+                              </AuthProvider>
                             </UserProvider>
                           </TeamDepartmentProvider>
                         </Errorboundary>

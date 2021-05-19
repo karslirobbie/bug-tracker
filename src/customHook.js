@@ -26,7 +26,7 @@ export const usePopulateState = (props) => {
       setUsers({ all: users, currentUser });
     }
     populate()
-  }, ['users'])
+  }, ['users', 'token'])
 
 
   useEffect(() => {

@@ -22,7 +22,7 @@ export default class Form extends Component {
     const data = { ...this.state.data, createdBy: this.props.currentUser, tag }
     this.resetErrors()
     this.props.setState(await exec(data))
-    toast.dark('Creation Success.')
+    toast.dark('Success.')
   };
 
 

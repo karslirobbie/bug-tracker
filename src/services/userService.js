@@ -13,7 +13,6 @@ export const getCurrentUser = () => {
   return decoded
 }
 
-
 export const getUsers = async () => {
   const { data: users } = await axios.get(url);
   return users
