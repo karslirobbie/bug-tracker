@@ -54,7 +54,7 @@ const routes = [
   },
   {
     path: "/",
-    component: SignUp
+    component: Ticket
   },
   {
     path: "*",
