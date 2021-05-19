@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
+import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { signOut } from '../../services/authService'
 
 export default function Nav ({ admin }) {
+  const location = useHistory();
 
   const adminLinks = [
     {
@@ -54,6 +55,14 @@ export default function Nav ({ admin }) {
   ]
 
   const links = () => admin ? adminLinks : regularLinks;
+
+
+  const handleLogout = () => {
+    signOut();
+    location.replace({ pathname: '/login' })
+  }
+
+
   return (
     <nav className="hidden md:flex text-xs flex-col w-28 h-full bg-gray-900 rounded-lg text-gray-2000 ">
       <div className="flex flex-col justify-center gap-12 place-items-center h-3/4 w-full">
@@ -68,7 +77,7 @@ export default function Nav ({ admin }) {
           </Link>)}
       </div>
 
-      <div className="h-1/4 w-full flex justify-center place-items-center">
+      <div className="h-1/4 w-full flex justify-center place-items-center" onClick={handleLogout}>
         <div className="flex flex-col justify-center place-items-center gap-3 transform hover:scale-110 transition-all delay-100 ease-in">
           <div className="flex justify-center place-items-center w-10 h-10 bg-gray-800 cursor-pointer text-lime-400 rounded-full transform transition-all hover:shadow-xl">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
