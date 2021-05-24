@@ -39,7 +39,7 @@ export default class TicketModal extends Form {
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                       {this.renderRegularInput({ label: 'Title', name: 'title' })}
 
-                      {this.renderInputDescription({ type: 'ticket', name: 'description' })}
+                      {this.renderInputDescription({ label: 'description', type: 'ticket', name: 'description' })}
 
                       <div className="col-span-6 sm:col-span-3">
                         {this.renderDropdown({ label: 'Status', name: 'status', data: this.status })}

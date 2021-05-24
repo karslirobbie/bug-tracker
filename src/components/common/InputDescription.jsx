@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function InputDescription ({ type, error, ...rest }) {
+export default function InputDescription ({ label, type, error, ...rest }) {
   return (
-    <div>
+    <div className="w-full">
       <label htmlFor="about" className="block text-xs sm:text-sm font-medium text-gray-400">
-        Description
+        {label}
       </label>
       <div className="mt-1">
         <textarea
@@ -16,7 +16,7 @@ export default function InputDescription ({ type, error, ...rest }) {
       </div>
       <p className="mt-2 text-xs sm:text-sm text-gray-500">
         {error ? <span className="text-red-400 text-xs">{error}</span> :
-          `Brief description for this ${type}.`}
+          type && `Brief description for this ${type}.`}
 
       </p>
     </div>

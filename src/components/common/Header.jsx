@@ -2,11 +2,11 @@ import React from 'react'
 import MobileNav from './MobileNav';
 
 
-export default function Header ({ title, children, onShow }) {
+export default function Header ({ title, children, onShow, admin }) {
 
   return (
     <div className="flex flex-col h-1/6">
-      <MobileNav />
+      <MobileNav admin={admin} />
 
       <header className="flex w-full h-full items-end justify-between px-5 md:mx-16 2xl:mx-5">
         <h2 className="text-lg lg:text-3xl font-medium tracking-tight text-gray-300 px-5 md:px-24">{title}</h2>

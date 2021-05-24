@@ -38,7 +38,9 @@ export default function Admin () {
   return (
     <PageTemplate
       header={
-        <Header onShow={() => setShow(true)}>
+        <Header
+          onShow={() => setShow(true)}
+          admin={true}>
           <Component />
         </Header>}
       main={<Table header={header()} list={list()} />}

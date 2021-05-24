@@ -82,8 +82,8 @@ export default class Form extends Component {
     return <Input name={name} type={type} onChange={this.handleChange} placeholder={placeholder} />
   }
 
-  renderInputDescription = ({ name, type }) => {
-    return <InputDescription type={type} name={name} onChange={this.handleChange} error={this.errorMessage(name)} />
+  renderInputDescription = ({ name, type, label }) => {
+    return <InputDescription type={type} name={name} label={label} onChange={this.handleChange} error={this.errorMessage(name)} />
   }
 
   renderRegularInput = ({ label, name }) => {

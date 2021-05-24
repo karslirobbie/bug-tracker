@@ -40,7 +40,7 @@ export default class ProjectModal extends Form {
 
                       {this.renderRegularInput({ label: 'Alias', name: 'alias' })}
 
-                      {this.renderInputDescription({ type: 'ticket', name: 'description' })}
+                      {this.renderInputDescription({ label: 'Description', type: 'ticket', name: 'description' })}
 
                       <div className="col-span-6 sm:col-span-3">
                         {this.renderDropdown({ label: 'Status', name: 'status', data: this.status })}

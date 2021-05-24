@@ -31,7 +31,6 @@ export default class SignIn extends Form {
       this.props.history.replace({ pathname: "/tickets" })
     } catch (exc) {
       toast.dark('Invalid Username or Password')
-      this.setState({ data: {} })
     }
   };
 
@@ -55,7 +54,7 @@ export default class SignIn extends Form {
                 {this.renderInput({ name: "password", placeholder: "Password", type: "password" })}
               </div>
               <div className="mt-2 md:mt-10 flex flex-col items-center">
-                <Button label="Sign in" onClick={() => this.handleSubmit({}, signIn)} />
+                <Button label="Sign in" onClick={this.handleSubmit} />
                 <p className="text-xs mt-1 md:mt-3 text-gray-400">or</p>
                 <p className="text-xs mt-1 underline cursor-pointer text-lime-400 "><Link to="/signup">Sign Up</Link></p>
               </div>

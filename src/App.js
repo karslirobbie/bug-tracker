@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { TicketProvider, ProjectProvider, UserProvider, AuthProvider, TeamDepartmentProvider } from './context'
+import { TicketProvider, ProjectProvider, UserProvider, AuthProvider, TeamDepartmentProvider, CommentProvider } from './context'
 import { GuardProvider, GuardedRoute } from 'react-router-guards';
 import { ReactComponent as Loading } from './images/loading.svg'
 import Errorboundary from './components/common/ErrorBoundary'
@@ -15,11 +15,12 @@ import routes from './routes'
 function App () {
   const [token, setToken] = useState(localStorage.getItem('token'))
   const [tickets, setTickets] = useState([]);
+  const [comments, setComments] = useState([]);
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState({ currentUser: "", all: [] });
   const [teamDepartments, setTeamDepartments] = useState({ teams: [], departments: [] })
 
-  usePopulateState({ users, token, setTickets, setProjects, setUsers, setTeamDepartments })
+  usePopulateState({ users, token, comments, setComments, setTickets, setProjects, setUsers, setTeamDepartments })
 
   return (
     <div className="App w-screen h-screen bg-gray-800 font-poppins">
@@ -38,11 +39,13 @@ function App () {
                             <TeamDepartmentProvider value={{ teamDepartments, setTeamDepartments }}>
                               <UserProvider value={{ users, setUsers }}>
                                 <AuthProvider value={{ token, setToken }}>
-                                  <ProjectProvider value={{ projects, setProjects }}>
-                                    <TicketProvider value={{ tickets, setTickets }}>
-                                      <Component {...props} />
-                                    </TicketProvider>
-                                  </ProjectProvider>
+                                  <TicketProvider value={{ tickets, setTickets }}>
+                                    <ProjectProvider value={{ projects, setProjects }}>
+                                      <CommentProvider value={{ comments, setComments }}>
+                                        <Component {...props} />
+                                      </CommentProvider>
+                                    </ProjectProvider>
+                                  </TicketProvider>
                                 </AuthProvider>
                               </UserProvider>
                             </TeamDepartmentProvider>

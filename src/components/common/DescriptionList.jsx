@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { TicketContext } from '../../context'
+import Comments from './Comments'
+
 
 export default function DescriptionList () {
 
@@ -18,10 +20,11 @@ export default function DescriptionList () {
     { title: "Urgency", name: "urgency" },
     { title: "Assignee", name: "assignee", prop: "name" },
     { title: "Assigned To", name: "assignedTo", prop: "name" },
+
   ]
 
   return (
-    <div className="bg-gray-900 shadow w-full h-full overflow-hidden mr-5 xl:mr-10 rounded-lg">
+    <div className="bg-gray-900 overflow-y-scroll shadow w-full h-full overflow-hidden mr-5 xl:mr-10 rounded-lg">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="md:text-lg leading-6 font-medium text-gray-400">
           Ticket Information
@@ -70,6 +73,7 @@ export default function DescriptionList () {
               </ul>
             </dd>
           </div>
+          <Comments selected={current} />
         </dl>
       </div>
     </div>

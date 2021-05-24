@@ -7,6 +7,7 @@ import { getTeams } from './services/teamService'
 import { getTickets } from './services/ticketService'
 import { getProjects } from './services/projectService'
 import { getDepartments } from './services/departmentService'
+import { getComments } from './services/commentService'
 import { getCurrentUser, getUsers } from './services/userService'
 import { TeamDepartmentContext, UserContext, ProjectContext } from './context'
 
@@ -14,7 +15,7 @@ import { TeamDepartmentContext, UserContext, ProjectContext } from './context'
 
 export const usePopulateState = (props) => {
   const {
-    token,
+    token, comments, setComments,
     users: { currentUser },
     setTickets, setProjects, setUsers,
     setTeamDepartments
@@ -29,6 +30,15 @@ export const usePopulateState = (props) => {
     }
     populate()
   }, [token])
+
+
+  useEffect(() => {
+    const populate = async () => {
+      const comments = await getComments();
+      setComments(comments);
+    }
+    populate()
+  }, ['comments'])
 
 
   useEffect(() => {
